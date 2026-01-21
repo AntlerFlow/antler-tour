@@ -38,8 +38,6 @@ import java.util.*;
 @Tag("antler-tour")
 @JsModule("./antlerflow/tour/core/tour-facade.ts")
 public class Tour extends Component {
-    private static final ServiceLoader<TourEngine> ENGINE_SERVICE_LOADER =
-            ServiceLoader.load(TourEngine.class);
     @Builder.Default private List<TourStep> steps = new ArrayList<>();
     @Builder.Default private boolean showCancelButton = true;
     @Builder.Default private boolean allowClose = false;
@@ -84,9 +82,7 @@ public class Tour extends Component {
     }
 
     private Optional<TourEngine> findEngine(EngineType engineType) {
-        for (TourEngine e : ENGINE_SERVICE_LOADER)
-            if (e.getId().equalsIgnoreCase(engineType.getId())) return Optional.of(e);
-        return Optional.empty();
+        return Optional.ofNullable(engineType).map(EngineType::getEngineInstance);
     }
 
     private Map<Object, Object> unifyOptions() {

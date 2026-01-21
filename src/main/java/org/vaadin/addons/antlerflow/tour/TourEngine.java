@@ -52,7 +52,7 @@ public interface TourEngine {
                             ui ->
                                     ui.getPage()
                                             .executeJs(
-                                                    "return window.VaadinTour.start($0, JSON.parse($1), JSON.parse($2));",
+                                                    "return window.AntlerTour.start($0, JSON.parse($1), JSON.parse($2));",
                                                     getId(),
                                                     GSON.toJson(steps),
                                                     GSON.toJson(options)),
@@ -69,7 +69,7 @@ public interface TourEngine {
         try {
             host.getUI()
                     .ifPresentOrElse(
-                            ui -> ui.getPage().executeJs("return window.VaadinTour.cancel();"),
+                            ui -> ui.getPage().executeJs("return window.AntlerTour.cancel();"),
                             () -> {
                                 throw new IllegalStateException(
                                         "Component must be attached to a UI");
@@ -86,8 +86,8 @@ public interface TourEngine {
                                 ui.getPage()
                                         .executeJs(
                                                 """
-        window.VaadinTour.on('complete', () => $0.$server.onCompleted());
-        window.VaadinTour.on('cancel', () => $0.$server.onCanceled());
+    window.AntlerTour.on('complete', () => $0.$server.onCompleted());
+    window.AntlerTour.on('cancel', () => $0.$server.onCanceled());
     """,
                                                 host.getElement()));
     }

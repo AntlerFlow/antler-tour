@@ -33,7 +33,7 @@ function toActionFn(driver: Driver, btn: { type: string }) {
 }
 
 export function startDriverTour(steps: any[], options: any = {}): () => void {
-    const stepButtonsMap = steps.map(step => {
+    const stepButtonMapList = steps.map(step => {
         return {stepId: step.id, buttons: step.buttons};
     });
     const showButtons: string[] = [];
@@ -46,7 +46,7 @@ export function startDriverTour(steps: any[], options: any = {}): () => void {
         onPopoverRender: (popover, {state, driver}) => {
             // @ts-ignore
             const stepId = state.activeStep.id;
-            const stepButtons = stepButtonsMap.find(step => step.stepId === stepId)?.buttons || [];
+            const stepButtons = stepButtonMapList.find(step => step.stepId === stepId)?.buttons || [];
             popover.footerButtons.replaceChildren();
             // @ts-ignore
             stepButtons.map(btn => {
@@ -59,11 +59,11 @@ export function startDriverTour(steps: any[], options: any = {}): () => void {
         },
         onDestroyed: () => {
             if (canceled) return;
-            (window as any).VaadinTour._emit('complete');
+            (window as any).AntlerTour._emit('complete');
         },
         onCloseClick: () => {
             canceled = true;
-            (window as any).VaadinTour._emit('cancel');
+            (window as any).AntlerTour._emit('cancel');
             d.destroy();
         },
         ...options,

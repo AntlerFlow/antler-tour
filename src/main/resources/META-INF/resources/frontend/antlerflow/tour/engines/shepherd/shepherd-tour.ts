@@ -56,8 +56,8 @@ export function startShepherdTour(steps: any[], options: any = {}): () => void {
     });
 
     // Forward lifecycle back to Vaadin
-    tour.on('complete', () => (window as any).VaadinTour._emit('complete'));
-    tour.on('cancel', () => (window as any).VaadinTour._emit('cancel'));
+    tour.on('complete', () => (window as any).AntlerTour._emit('complete'));
+    tour.on('cancel', () => (window as any).AntlerTour._emit('cancel'));
 
     tour.start();
     return tour.cancel;
