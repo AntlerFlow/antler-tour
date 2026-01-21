@@ -25,7 +25,7 @@ Add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>org.vaadin.addons.antlerflow</groupId>
     <artifactId>antler-tour</artifactId>
-    <version>1.0.0</version>
+    <version>${antler-tour.version}</version>
 </dependency>
 ```
 
@@ -158,10 +158,10 @@ Starting the test/demo server:
 
 You can create the zip package needed for [Vaadin Directory](https://vaadin.com/directory/) using
 ```
-mvn versions:set -DnewVersion=1.0.0 # You cannot publish snapshot versions 
+mvn versions:set -DnewVersion=1.1.0 # You cannot publish snapshot versions 
 mvn install -Pdirectory
 ```
 
-The package is created as `target/antler-tour-1.0.0.zip`
+The package is created as `target/antler-tour-1.1.0.zip`
 
 For more information or to upload the package, visit https://vaadin.com/directory/my-components?uploadNewComponent

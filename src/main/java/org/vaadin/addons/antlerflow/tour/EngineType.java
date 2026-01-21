@@ -2,6 +2,8 @@ package org.vaadin.addons.antlerflow.tour;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.vaadin.addons.antlerflow.tour.engines.DriverEngine;
+import org.vaadin.addons.antlerflow.tour.engines.ShepherdEngine;
 
 /**
  * Enum representing the types of engines that can be used for guided tours.
@@ -20,8 +22,20 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 public enum EngineType {
-    DRIVER("driver"),
-    SHEPHERD("shepherd");
+    DRIVER("driver") {
+        @Override
+        public TourEngine getEngineInstance() {
+            return new DriverEngine();
+        }
+    },
+    SHEPHERD("shepherd") {
+        @Override
+        public TourEngine getEngineInstance() {
+            return new ShepherdEngine();
+        }
+    };
 
     @Getter private final String id;
+
+    public abstract TourEngine getEngineInstance();
 }

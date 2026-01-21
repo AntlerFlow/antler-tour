@@ -1,4 +1,4 @@
-package org.vaadin.addons.antlerflow.tour.engine;
+package org.vaadin.addons.antlerflow.tour.engines;
 
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;

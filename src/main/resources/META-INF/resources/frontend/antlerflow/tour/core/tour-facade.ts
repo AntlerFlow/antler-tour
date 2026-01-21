@@ -3,8 +3,8 @@
     const ERROR_PREFIX = 'No engine registered for: ';
     const listeners = new Map<TourEvent, Set<() => void>>();
 
-    if (!(window as any).VaadinTour) {
-        (window as any).VaadinTour = {
+    if (!(window as any).AntlerTour) {
+        (window as any).AntlerTour = {
             async start(engineId: string, _steps: any[], _options: any = {}) {
                 throw new Error(`${ERROR_PREFIX}${engineId}`);
             },
